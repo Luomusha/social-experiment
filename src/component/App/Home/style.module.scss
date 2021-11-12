@@ -1,3 +1,13 @@
 .Home{
+  svg{
+    background: darkslategrey;
+    height: 400px;
+    width: 100%;
+    display: block;
+    margin: auto;
 
+    rect{
+      stroke: rebeccapurple;
+    }
+  }
 }

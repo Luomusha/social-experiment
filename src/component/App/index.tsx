@@ -7,8 +7,9 @@ import Home from "./Home";
 function App() {
 
     return <Router>
+        123
         <Routes>
-            <Route><Home/></Route>
+            <Route index element={<Home/>} />
         </Routes>
     </Router>
 }
