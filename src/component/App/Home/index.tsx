@@ -27,11 +27,19 @@ function Home() {
                     position: 'right',
                     valueAnimation: true
                 },
-                name: '销量',
+                name: '财富',
                 type: 'bar',
-                data: averageMoney.people.map(person => person.money)
+                data: averageMoney.people.map(person => ({
+                    value: person.money, itemStyle: {
+                        color: person.target ? '#00ffff' : '#a90000'
+                    }
+                }))
             }
-        ]
+        ],
+        animationDuration: 3000,
+        animationDurationUpdate: 3000,
+        animationEasing: 'linear',
+        animationEasingUpdate: 'linear'
     })
     useEffect(() => {
         setOption({
@@ -55,11 +63,19 @@ function Home() {
                         valueAnimation: true
                     },
                     realtimeSort: true,
-                    name: '销量',
+                    name: '财富',
                     type: 'bar',
-                    data: averageMoney.people.map(person => person.money)
+                    data: averageMoney.people.map(person => ({
+                        value: person.money, itemStyle: {
+                            color: person.target ? '#00ffff' : '#a90000'
+                        }
+                    }))
                 }
-            ]
+            ],
+            animationDuration: 300,
+            animationDurationUpdate: 300,
+            animationEasing: 'linear',
+            animationEasingUpdate: 'linear'
         })
     }, [averageMoney.people])
 
