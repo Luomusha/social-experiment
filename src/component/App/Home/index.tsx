@@ -3,10 +3,11 @@ import style from './style.module.scss'
 import StoreContext from "../../../util/context";
 import {observer} from "mobx-react";
 import ReactECharts from 'echarts-for-react';
+import {Person} from "../../../store/AverageMoney";
 
 function Home() {
     const {averageMoney} = useContext(StoreContext)
-    const [option, setOption] = useState({
+    const getOptionData = (data: Person[]) => ({
         title: {
             text: '财富统计图'
         },
@@ -24,7 +25,7 @@ function Home() {
                 realtimeSort: true,
                 label: {
                     show: true,
-                    position: 'right',
+                    position: 'top',
                     valueAnimation: true
                 },
                 name: '财富',
@@ -36,47 +37,14 @@ function Home() {
                 }))
             }
         ],
-        animationDuration: 3000,
-        animationDurationUpdate: 3000,
+        animationDuration: 100,
+        animationDurationUpdate: 100,
         animationEasing: 'linear',
         animationEasingUpdate: 'linear'
     })
+    const [option, setOption] = useState(getOptionData(averageMoney.people))
     useEffect(() => {
-        setOption({
-            title: {
-                text: '财富统计图'
-            },
-            tooltip: {},
-            xAxis: {
-                data: averageMoney.people.map(person => person.name),
-                inverse: true,
-                axisLabel: {
-                    fontSize: 10
-                }
-            },
-            yAxis: {},
-            series: [
-                {
-                    label: {
-                        show: true,
-                        position: 'top',
-                        valueAnimation: true
-                    },
-                    realtimeSort: true,
-                    name: '财富',
-                    type: 'bar',
-                    data: averageMoney.people.map(person => ({
-                        value: person.money, itemStyle: {
-                            color: person.target ? '#00ffff' : '#a90000'
-                        }
-                    }))
-                }
-            ],
-            animationDuration: 300,
-            animationDurationUpdate: 300,
-            animationEasing: 'linear',
-            animationEasingUpdate: 'linear'
-        })
+        setOption(getOptionData(averageMoney.people))
     }, [averageMoney.people])
 
     useEffect(() => {

@@ -31,7 +31,7 @@ class AverageMoney {
     }
 
     exchange = () => {
-        const giveTo = this.people.slice().map(() => randomInt(this.count))
+        const giveTo = this.people.slice().map(() => randomInt(this.people.length))
         this.people = this.people.map((person, pIndex) => ({
             money: person.money - 1 + giveTo.filter(to => pIndex === to).length,
             name: person.name,
